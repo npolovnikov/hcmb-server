@@ -15,7 +15,7 @@
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <maven.compiler>11</maven.compiler>
         <node.version>v11.6.0</node.version>
-        <npm.version>6.4.1</npm.version>
+        <npm.version>6.5.0</npm.version>
 
         <!-- versions -->
         <mapstruct.version>1.2.0.Final</mapstruct.version>
