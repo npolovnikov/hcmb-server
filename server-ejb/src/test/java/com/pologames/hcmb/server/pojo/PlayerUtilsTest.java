@@ -12,7 +12,7 @@ public class PlayerUtilsTest {
 
     @Test
     public void createRandomGTest() {
-        for (int j = 0; j < 5; j++) {
+        for (int j = 0; j < 50; j++) {
             LOG.info("j = {}", j);
             for (int i = 40; i < 100; i += 10) {
                 final int max = i + 10;
@@ -27,7 +27,7 @@ public class PlayerUtilsTest {
 
     @Test
     public void createRandomDTest() {
-        for (int j = 0; j < 5; j++) {
+        for (int j = 0; j < 50; j++) {
             LOG.info("j = {}", j);
             for (int i = 40; i < 100; i += 10) {
                 final int max = i + 10;
@@ -42,7 +42,7 @@ public class PlayerUtilsTest {
 
     @Test
     public void createRandomCTest() {
-        for (int j = 0; j < 5; j++) {
+        for (int j = 0; j < 50; j++) {
             LOG.info("j = {}", j);
             for (int i = 40; i < 100; i += 10) {
                 final int max = i + 10;

@@ -18,6 +18,17 @@ public class PlayerUtils {
         return 0;
     }
 
+    public static Player createRandom(PositionEnum position, int minOvr, int maxOvr) {
+        switch (position){
+            case C: return createRandomC(minOvr, maxOvr);
+            case D: return createRandomD(minOvr, maxOvr);
+            case G: return createRandomG(minOvr, maxOvr);
+            case L: return createRandomC(minOvr, maxOvr);
+            case R: return createRandomR(minOvr, maxOvr);
+            default: return null;
+        }
+    }
+
     /**
      * Генерация рандомного вратаря
      * @param minOvr минимальный оvr
@@ -223,7 +234,7 @@ public class PlayerUtils {
     }
 
     private static int randomSecondary(int minOvr, int maxOvr) {
-        return randomInt(minOvr - 10, maxOvr + 15);
+        return randomInt(minOvr - 14, maxOvr + 18);
     }
 
     private static int randomOther() {

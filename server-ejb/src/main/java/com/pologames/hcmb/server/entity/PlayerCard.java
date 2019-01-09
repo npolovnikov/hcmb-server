@@ -3,6 +3,7 @@ package com.pologames.hcmb.server.entity;
 import com.pologames.hcmb.server.pojo.UnitEnum;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class PlayerCard extends PlayerBase {
@@ -72,6 +73,9 @@ public class PlayerCard extends PlayerBase {
     }
 
     public PlayerStatistic getStatistics() {
+        if (statistics == null) {
+            statistics = new PlayerStatistic();
+        }
         return statistics;
     }
 
@@ -99,11 +103,23 @@ public class PlayerCard extends PlayerBase {
     public String toString() {
         return "PlayerCard{" +
                 "id=" + id +
-                ", player=" + player +
                 ", gamer=" + gamer +
                 ", statistics=" + statistics +
                 ", latestPrice=" + latestPrice +
                 ", unit=" + unit +
                 "} " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PlayerCard that = (PlayerCard) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

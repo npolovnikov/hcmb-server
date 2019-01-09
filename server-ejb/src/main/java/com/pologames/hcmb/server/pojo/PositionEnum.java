@@ -11,4 +11,7 @@ public enum PositionEnum {
     public static PositionEnum random() {
         return values()[new Random().nextInt(values().length - 1)];
     }
+    public boolean isAttack(){
+        return this == C || this == R || this == L;
+    }
 }

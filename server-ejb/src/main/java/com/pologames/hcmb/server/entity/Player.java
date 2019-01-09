@@ -3,6 +3,7 @@ package com.pologames.hcmb.server.entity;
 import com.pologames.hcmb.server.pojo.PositionEnum;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * Описание игрока
@@ -91,5 +92,22 @@ public class Player extends PlayerBase {
                 ", position=" + position +
                 ", talent=" + talent +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return talent == player.talent &&
+                Objects.equals(id, player.id) &&
+                Objects.equals(fullName, player.fullName) &&
+                Objects.equals(shortName, player.shortName) &&
+                position == player.position;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, fullName, shortName, position, talent);
     }
 }

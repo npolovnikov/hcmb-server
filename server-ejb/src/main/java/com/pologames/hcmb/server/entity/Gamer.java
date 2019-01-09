@@ -1,7 +1,11 @@
 package com.pologames.hcmb.server.entity;
 
+import com.pologames.hcmb.server.pojo.UnitEnum;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Gamer {
@@ -91,19 +95,21 @@ public class Gamer {
     }
 
     public List<PlayerCard> getPlayerCards() {
+        if (playerCards == null) {
+            playerCards = new ArrayList<>();
+        }
         return playerCards;
     }
 
-    public void setPlayerCards(List<PlayerCard> playerCards) {
-        this.playerCards = playerCards;
+    public List<PlayerCard> getPlayerCardsByUnit(UnitEnum unit) {
+        return getPlayerCards().stream().filter(playerCard -> playerCard.getUnit() == unit).collect(Collectors.toList());
     }
 
     public GamerStatistic getStatistics() {
+        if (statistics == null){
+            statistics = new GamerStatistic();
+        }
         return statistics;
-    }
-
-    public void setStatistics(GamerStatistic statistics) {
-        this.statistics = statistics;
     }
 
     @Override
@@ -114,7 +120,6 @@ public class Gamer {
                 ", moneySilver=" + moneySilver +
                 ", moneyGold=" + moneyGold +
                 ", stadiumId=" + stadiumId +
-                ", playerCards=" + playerCards +
                 ", statistics=" + statistics +
                 '}';
     }

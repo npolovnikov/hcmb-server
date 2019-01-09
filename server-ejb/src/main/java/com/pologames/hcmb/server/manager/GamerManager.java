@@ -20,7 +20,6 @@ public class GamerManager {
 
     public Gamer createNewGamer(final String nickname) {
         final Gamer gamer = new Gamer();
-        gamer.setStatistics(new GamerStatistic());
         gamer.setNickname(nickname);
         gamer.setStadiumId(0);
 

@@ -3,10 +3,11 @@ package com.pologames.hcmb.server.mapper;
 import com.pologames.hcmb.server.entity.Player;
 import com.pologames.hcmb.server.entity.PlayerCard;
 import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel = "jsr330")
+@Mapper()
 public interface PlayerBaseMapper {
-//    PlayerBaseMapper INSTANCE = Mappers.getMapper(PlayerBaseMapper.class);
+    PlayerBaseMapper INSTANCE = Mappers.getMapper(PlayerBaseMapper.class);
 
     /**
      * Перенос характерисик {@link com.pologames.hcmb.server.entity.PlayerBase}
