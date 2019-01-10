@@ -13,14 +13,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class GamerTest {
-    private static final Logger LOG = LoggerFactory.getLogger(GamerTest.class);
+public class GameTimeTest {
+    private static final Logger LOG = LoggerFactory.getLogger(GameTimeTest.class);
 
 
     private Gamer gamer;
 
     @Test
-    public void createGamerTest() {
+    public void createTeam() {
         gamer = new Gamer();
 
         gamer.setNickname("Tast Gamer");
@@ -39,8 +39,8 @@ public class GamerTest {
         }
     }
 
-    @Test(dependsOnMethods = "createGamerTest")
-    public void calcGameTest() {
+    @Test(dependsOnMethods = "createTeam")
+    public void calcGameTime() {
         LOG.info("GAMETAB " + Arrays.stream(UnitEnum.values())
                 .map(unitEnum -> String.format("%1$7s", unitEnum.toString()))
                 .collect(Collectors.joining("|")));
@@ -53,7 +53,11 @@ public class GamerTest {
                 if (unit == preview){
                     resultStr.append(String.format("%1$8s", "X|"));
                 } else {
-                    final GameResult result = GameUnits.calcGame(gamer.getPlayerCardsByUnit(preview), gamer.getPlayerCardsByUnit(unit));
+                    final GameResult result = GameUnits.calcGame(gamer.getPlayerCardsByUnit(preview), gamer.getPlayerCardsByUnit(unit), 90);
+
+                    Assert.assertTrue(Arrays.asList(0, 1, 2).indexOf(result.getWinner()) >= 0);
+                    Assert.assertTrue(result.getT1Coals() >= 0);
+                    Assert.assertTrue(result.getT2Coals() >= 0);
                     resultStr.append(String.format("%1$7s|", result.getT1Coals() + " - " + result.getT2Coals()));
                 }
             }

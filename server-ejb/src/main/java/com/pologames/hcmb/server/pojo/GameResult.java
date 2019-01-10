@@ -1,16 +1,30 @@
 package com.pologames.hcmb.server.pojo;
 
+/**
+ * Результаты матча\переода\отрезка времени
+ */
 public class GameResult {
+
+    /**
+     * Команда победитель <br>
+     *     0 - Ничья<br>
+     *     1 - Победа хозяев (t1) <br>
+     *     2 - Победа гостей (t2)
+     */
     private int winner;
+
+    /**
+     * Количество голов, которые забили хозяева (t1)
+     */
     private int t1Coals;
+
+    /**
+     * Количество голов, которые забили гости (t2)
+     */
     private int t2Coals;
 
-    public GameResult(int t1Coals, int t2Coals) {
-        while (t1Coals < 0 || t2Coals < 0){
-            t1Coals++;
-            t2Coals++;
-        }
 
+    public GameResult(int t1Coals, int t2Coals) {
         this.winner = t1Coals > t2Coals ? 1 : t2Coals > t1Coals ? 2 : 0;
         this.t1Coals = t1Coals;
         this.t2Coals = t2Coals;
