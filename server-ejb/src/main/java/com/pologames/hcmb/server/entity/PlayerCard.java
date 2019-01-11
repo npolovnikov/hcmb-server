@@ -48,6 +48,9 @@ public class PlayerCard extends PlayerBase {
     @Column(nullable = false)
     private UnitEnum unit;
 
+    @Transient
+    private int fatigue;
+
     public Integer getId() {
         return id;
     }
@@ -97,6 +100,20 @@ public class PlayerCard extends PlayerBase {
 
     public void setUnit(UnitEnum unit) {
         this.unit = unit;
+    }
+
+
+    public void addFatigue(int fatigue) {
+        this.fatigue += fatigue / ((getEndurance() + 10) / 20);
+
+        if (this.fatigue > 50) {
+            this.fatigue = 50;
+        }
+    }
+
+    @Override
+    public int getOvr() {
+        return super.getOvr() - fatigue;
     }
 
     @Override

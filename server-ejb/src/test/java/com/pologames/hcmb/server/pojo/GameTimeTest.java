@@ -64,5 +64,10 @@ public class GameTimeTest {
 
             LOG.info(resultStr.toString());
         }
+
+        for (UnitEnum unit: UnitEnum.values()) {
+            LOG.info("Unit {}, PlayersCard={}", unit, gamer.getPlayerCardsByUnit(unit).stream()
+                    .map(cp -> cp.getPlayer().getPosition() + " "+ cp.getOvr()).collect(Collectors.joining(", ")));
+        }
     }
 }

@@ -23,11 +23,24 @@ public class GameResult {
      */
     private int t2Coals;
 
+    public GameResult() {
+    }
 
     public GameResult(int t1Coals, int t2Coals) {
         this.winner = t1Coals > t2Coals ? 1 : t2Coals > t1Coals ? 2 : 0;
         this.t1Coals = t1Coals;
         this.t2Coals = t2Coals;
+    }
+
+    public void calculate(GameResult timeResult) {
+        calculate(timeResult.getT1Coals(), timeResult.getT2Coals());
+    }
+
+    public void calculate(int t1Coals, int t2Coals) {
+        this.t1Coals += t1Coals;
+        this.t2Coals += t2Coals;
+
+        this.winner = this.t1Coals > this.t2Coals ? 1 : this.t2Coals > this.t1Coals ? 2 : 0;
     }
 
     public int getWinner() {
@@ -52,5 +65,14 @@ public class GameResult {
 
     public void setT2Coals(int t2Coals) {
         this.t2Coals = t2Coals;
+    }
+
+    @Override
+    public String toString() {
+        return "GameResult{" +
+                "winner=" + winner +
+                ", t1Coals=" + t1Coals +
+                ", t2Coals=" + t2Coals +
+                '}';
     }
 }

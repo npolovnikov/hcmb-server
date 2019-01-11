@@ -1,7 +1,9 @@
 package com.pologames.hcmb.server.pojo;
 
+import com.pologames.hcmb.server.entity.Gamer;
 import com.pologames.hcmb.server.entity.PlayerBase;
 import com.pologames.hcmb.server.entity.PlayerCard;
+import com.pologames.hcmb.server.entity.TimeTactic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +13,28 @@ import java.util.function.Predicate;
 
 public class GameUnits {
     private static final Logger LOG = LoggerFactory.getLogger(GameUnits.class);
+
+    public static GameResult calcGame(Gamer first, Gamer second) {
+        final GameResult result = new GameResult();
+
+        for (int startTime = 0; startTime < 90; startTime+=10) {
+            final TimeTactic firstTactic = first.getTactic().getTimeTacticByStartTime(startTime);
+            final List<PlayerCard> firstList = first.getPlayerCardsByUnit(firstTactic.getUnit());
+
+            final TimeTactic secondTactic = second.getTactic().getTimeTacticByStartTime(startTime);
+            final List<PlayerCard> secondList = second.getPlayerCardsByUnit(secondTactic.getUnit());
+
+//            LOG.info("{}, {}", firstTactic.getUnit(), secondTactic.getUnit());
+//            LOG.info("{}, {}",
+//                    firstList.stream().mapToInt(PlayerCard::getOvr).average().orElse(0),
+//                    secondList.stream().mapToInt(PlayerCard::getOvr).average().orElse(0));
+            final GameResult timeResult = calcGame(firstList, secondList, 10);
+//            LOG.info("first {} vs Second {}. Time from {} to {}", timeResult.getT1Coals(), timeResult.getT2Coals(), startTime, startTime + 10);
+            result.calculate(timeResult);
+        }
+
+        return result;
+    }
 
     /**
      * Расчет противостояния состава 1 и состава 2, в течение некоторого времени
@@ -29,6 +53,9 @@ public class GameUnits {
         final int t1Goals = getGoals(t1AttOvr, t2DefOvr, time);
         final int t2Goals = getGoals(t2AttOvr, t1DefOvr, time);
 
+        //Усталость после игры
+        team1.forEach(pc -> pc.addFatigue(time));
+        team2.forEach(pc -> pc.addFatigue(time));
         return new GameResult(t1Goals, t2Goals);
     }
 
@@ -50,7 +77,7 @@ public class GameUnits {
      * @return Необходимая разница ОВР для гола
      */
     private static int getTimeScore(int time) {
-        return 270 / time;
+        return 100 / time;
     }
 
     /**

@@ -54,6 +54,13 @@ public class Gamer {
     @JoinColumn(name = "GAMER_STATISTIC_ID", nullable = false)
     private GamerStatistic statistics;
 
+    /**
+     * Тактика
+     */
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "TACTIC_ID", nullable = false)
+    private Tactic tactic;
+
     public Integer getId() {
         return id;
     }
@@ -106,7 +113,7 @@ public class Gamer {
     }
 
     public GamerStatistic getStatistics() {
-        if (statistics == null){
+        if (statistics == null) {
             statistics = new GamerStatistic();
         }
         return statistics;
@@ -122,5 +129,16 @@ public class Gamer {
                 ", stadiumId=" + stadiumId +
                 ", statistics=" + statistics +
                 '}';
+    }
+
+    public Tactic getTactic() {
+        if (tactic == null) {
+            tactic = new Tactic();
+        }
+        return tactic;
+    }
+
+    public void setTactic(Tactic tactic) {
+        this.tactic = tactic;
     }
 }
