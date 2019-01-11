@@ -35,7 +35,7 @@ public class GameTacticTest {
                 first.getPlayerCards().stream().mapToInt(PlayerCard::getOvr).average().orElse(0),
                 second.getPlayerCards().stream().mapToInt(PlayerCard::getOvr).average().orElse(0));
         final GameResult result = GameUnits.calcGame(first, second);
-        LOG.info("OVR {} {} : {} OVR {}",
+        LOG.info("OVR {} {} : {} OVR {}\n",
                 first.getPlayerCards().stream().mapToInt(PlayerCard::getOvr).average().orElse(0),
                 result.getT1Coals(), result.getT2Coals(),
                 second.getPlayerCards().stream().mapToInt(PlayerCard::getOvr).average().orElse(0));
@@ -52,7 +52,7 @@ public class GameTacticTest {
 
     @Test(dependsOnMethods = "initOtherGamers")
     public void equalsOtherTest() {
-        LOG.info("\nSecond Game");
+        LOG.info("Second Game");
         LOG.info("OVR {} vs OVR {}",
                 first.getPlayerCards().stream().mapToInt(PlayerCard::getOvr).average().orElse(0),
                 second.getPlayerCards().stream().mapToInt(PlayerCard::getOvr).average().orElse(0));
