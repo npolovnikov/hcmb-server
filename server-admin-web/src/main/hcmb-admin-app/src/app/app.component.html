@@ -2,45 +2,43 @@
   <mat-drawer #drawer>
     <mat-nav-list>
       <mat-list-item>
-        <button mat-raised-button>
-          <mat-icon>mic</mat-icon>
+        <button mat-raised-button style="width: 150px">
+          <mat-icon>person</mat-icon>
           Players
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-raised-button>
-          <mat-icon>mic</mat-icon>
+        <button mat-raised-button style="width: 150px">
+          <mat-icon>contacts</mat-icon>
           Player Cards
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-raised-button>
-          <mat-icon>mic</mat-icon>
-          Teams
+        <button mat-raised-button style="width: 150px">
+          <mat-icon>people</mat-icon>
+          Gamers
         </button>
       </mat-list-item>
       <mat-list-item>
-        <button mat-raised-button>
-          <mat-icon>mic</mat-icon>
+        <button mat-raised-button style="width: 150px">
+          <mat-icon>assignment_ind</mat-icon>
           Admins
         </button>
       </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>
-    <div style="display: flex; flex-wrap: wrap; align-items: center; padding: 8px 16px; background: #3f51b5; color: #ffffff">
+    <div style="display: flex; flex-wrap: wrap; text-align: right; align-items: center; padding: 8px 16px; background: #3f51b5; color: #ffffff">
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
+      <div style="flex-grow: 1"></div>
+      <div style="text-align: right">
+        Hockey mobile Admin Console
+      </div>
     </div>
     <mat-card>
-      <mat-card-header>
-        <mat-card-title style="font-size: 33px">
-            Hockey mobile Admin Console
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content style="height: 520px">
-      </mat-card-content>
+      <app-players></app-players>
     </mat-card>
   </mat-drawer-content>
 </mat-drawer-container>

@@ -9,10 +9,15 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
+import { PlayersComponent } from './players/players.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlayersComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +27,9 @@ import { MatCardModule } from '@angular/material/card';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
