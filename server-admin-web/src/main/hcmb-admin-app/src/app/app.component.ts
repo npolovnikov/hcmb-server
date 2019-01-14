@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {RestServiceService} from "./rest-service/rest-service.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'hcmb-admin-app';
+
+  constructor(private restServise: RestServiceService){
+
+  }
 }
